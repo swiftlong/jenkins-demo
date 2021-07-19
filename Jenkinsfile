@@ -23,9 +23,10 @@ node(){
     }
     stage('YAML'){
         echo "5. Change YAML File Stage"
-        if (env.BRANCH_NAME == 'master') {
-            input "确认要部署线上环境吗？"
-        }
+        echo "${env.BRANCH_NAME}"
+        #if (env.BRANCH_NAME == 'master') {
+        #    input "确认要部署线上环境吗？"
+        #}
         sh "sed -i 's/<BUILD_TAG>/${build_tag}/' k8s.yaml"
         sh "sed -i 's/<BRANCH_NAME>/${env.BRANCH_NAME}/' k8s.yaml"
     }
